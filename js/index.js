@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", function(){
+    window.location = "login.html"
     document.getElementById("autos").addEventListener("click", function() {
         localStorage.setItem("catID", 101);
         window.location = "products.html"

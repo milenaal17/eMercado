@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>eMercado - Todo lo que busques está aquí</title>
+  
+  <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/styles.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: rgb(248, 249, 250);
+    }
+  </style>
+</head>
+
+<body>
+  <main class="mt-4">
+    <div class="container text-center form-signing w-50">
+      <form action="" id="sing-in">
+        <img class="w-75" src="img/login.png" alt="">
+        <h1 class="h4 mb-3 fw-bold text-decoration-underline">Inicio de sesión</h1>
+
+        <div class="w-50 m-auto">
+          <div>
+            <label class="h6 fw-normal m-0" for="emailInput">Email</label>
+            <input type="email" name="email" class="form-control" id="emailInput" placeholder="Email">
+            <div class="small alert-danger p-1 visually-hidden" id="emailAlert">
+              <small>Debe ser una dirección de correo valida.</small>
+            </div>
+          </div class="mb-2">
+          <div>
+            <label class="h6 fw-normal m-0" for="passwordInput">Contraseña</label>
+            <input type="password" name="password" class="form-control" id="passwordInput" placeholder="Contraseña">
+            <div class="small alert-danger p-1 ps-3 text-start visually-hidden" id="passwordAlert">
+              La contraseña debe tener: 
+              <ul>
+                <li id="0">largo minimo de 8 caracteres</li>
+                <li id="1">al menos una letra mayuscula</li>
+                <li id="2">al menos una letra minuscula</li>
+                <li id="3">al menos un numero</li>
+                <li id="4">al menos un simbolo</li>
+              </ul>
+            </div>
+          </div>
+          <button class="mt-4 btn btn-lg btn-primary" type="submit">Ingresar</button>
+          <div class="small alert-danger p-1 mt-2 visually-hidden" id="sendData">
+            <small>Complete todos los campos correctamente.</small>
+          </div>
+        </div>
+      </form>
+    </div>
+  </main>
+  <footer class="text-muted">
+    <div class="container">
+      <p class="float-end">
+        <a href="#">Volver arriba</a>
+      </p>
+      <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a> -
+        2022</p>
+      <p>Clickea <a target="_blank" href="Letra.pdf">aquí</a> para descargar la letra del obligatorio.</p>
+    </div>
+  </footer>
+  <script src="js/login.js"></script>
+</body>
+
+</html>

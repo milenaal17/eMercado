@@ -5,52 +5,76 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>eMercado - Todo lo que busques está aquí</title>
-  
+
   <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
-  <style>
-    body {
-      background-color: rgb(248, 249, 250);
-    }
-  </style>
 </head>
 
 <body>
-  <main class="mt-4">
-    <div class="container text-center form-signing w-50">
-      <form action="" id="sing-in">
-        <img class="w-75" src="img/login.png" alt="">
-        <h1 class="h4 mb-3 fw-bold text-decoration-underline">Inicio de sesión</h1>
-
-        <div class="w-50 m-auto">
-          <div>
-            <label class="h6 fw-normal m-0" for="emailInput">Email</label>
-            <input type="email" name="email" class="form-control" id="emailInput" placeholder="Email">
-            <div class="small alert-danger p-1 visually-hidden" id="emailAlert">
-              <small>Debe ser una dirección de correo valida.</small>
-            </div>
-          </div class="mb-2">
-          <div>
-            <label class="h6 fw-normal m-0" for="passwordInput">Contraseña</label>
-            <input type="password" name="password" class="form-control" id="passwordInput" placeholder="Contraseña">
-            <div class="small alert-danger p-1 ps-3 text-start visually-hidden" id="passwordAlert">
-              La contraseña debe tener: 
-              <ul>
-                <li id="0">largo minimo de 8 caracteres</li>
-                <li id="1">al menos una letra mayuscula</li>
-                <li id="2">al menos una letra minuscula</li>
-                <li id="3">al menos un numero</li>
-                <li id="4">al menos un simbolo</li>
-              </ul>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1">
+    <div class="container">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav w-100 justify-content-between">
+          <li class="nav-item">
+            <a class="nav-link active" href="index.html">Inicio</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="categories.html">Categorías</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="sell.html">Vender</a>
+          </li>
+          <li class="nav-item">
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <main>
+    <div class="jumbotron text-center"></div>
+    <div class="album py-5 bg-light">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4">
+            <div class="card mb-4 shadow-sm custom-card cursor-active" id="autos">
+              <img class="bd-placeholder-img card-img-top" src="img/cars_index.jpg"
+                alt="Imgagen representativa de la categoría 'Autos'">
+              <h3 class="m-3">Autos</h3>
+              <div class="card-body">
+                <p class="card-text">Los mejores precios en autos 0 kilómetro, de alta y media gama.</p>
+              </div>
             </div>
           </div>
-          <button class="mt-4 btn btn-lg btn-primary" type="submit">Ingresar</button>
-          <div class="small alert-danger p-1 mt-2 visually-hidden" id="sendData">
-            <small>Complete todos los campos correctamente.</small>
+          <div class="col-md-4">
+            <div class="card mb-4 shadow-sm custom-card cursor-active" id="juguetes">
+              <img class="bd-placeholder-img card-img-top" src="img/toys_index.jpg"
+                alt="Imgagen representativa de la categoría 'Juguetes'">
+              <h3 class="m-3">Juguetes</h3>
+              <div class="card-body">
+                <p class="card-text">Encuentra aquí los mejores precios para niños/as de cualquier edad.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card mb-4 shadow-sm custom-card cursor-active" id="muebles">
+              <img class="bd-placeholder-img card-img-top" src="img/furniture_index.jpg"
+                alt="Imgagen representativa de la categoría 'Muebles'">
+              <h3 class="m-3">Muebles</h3>
+              <div class="card-body">
+                <p class="card-text">Muebles antiguos, nuevos y para ser armados por uno mismo.</p>
+              </div>
+            </div>
           </div>
         </div>
-      </form>
+        <div class="row">
+          <a class="btn btn-light btn-lg btn-block" href="categories.html">Y mucho más!</a>
+        </div>
+      </div>
     </div>
   </main>
   <footer class="text-muted">
@@ -63,7 +87,9 @@
       <p>Clickea <a target="_blank" href="Letra.pdf">aquí</a> para descargar la letra del obligatorio.</p>
     </div>
   </footer>
-  <script src="js/login.js"></script>
+  <script src="js/bootstrap.bundle.min.js"></script>
+  <script src="js/index.js"></script>
+  <script src="js/init.js"></script>
 </body>
 
 </html>
