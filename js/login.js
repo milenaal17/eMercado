@@ -50,7 +50,7 @@ form.addEventListener("submit", function(evento){
   evento.preventDefault();
   if (validEmail.test(form.email.value) && passValidation(form.password.value)) {
     document.getElementById('sendData').classList.add('visually-hidden');
-    window.location.href = "../main.html";
+    window.location.href = "index.html";
   } else
     document.getElementById('sendData').classList.remove('visually-hidden');
 });
