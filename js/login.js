@@ -1,3 +1,4 @@
+//EXPRESIONES REGULARES para validación:
 const validEmail= /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
 const validPass={
     upp: /[A-Z]+/,
@@ -16,16 +17,17 @@ function validField(ok,field){
   };
 }
 
-function passValidation(clave){
-    console.log(clave);
+// Validación de contraseña, posteriormente se implementará en el registro.
+function passValidation(key){
+    console.log(key);
     boolArray=[
-        clave.length>7,
-        validPass.upp.test(clave),
-        validPass.low.test(clave),
-        validPass.num.test(clave),
-        validPass.symb.test(clave),
+        key.length>7,
+        validPass.upp.test(key), //mayúsculas
+        validPass.low.test(key), //minúsculas
+        validPass.num.test(key), //números
+        validPass.symb.test(key), //símbolos
     ];
-    let resp=true;
+    let resp= true;
     for (let i = 0; i < boolArray.length; i++) {
         console.log(`${i}:${boolArray[i]}`)
         if (boolArray[i])
@@ -37,20 +39,22 @@ function passValidation(clave){
     return resp;
 }
 
+//Input donde se ingresa el mail:
 const email= document.getElementById('emailInput');
-  email.addEventListener('keyup', (e) => validField(validEmail.test(e.target.value),"email"));
   email.addEventListener('blur',(e) => validField(validEmail.test(e.target.value),"email"));
 
+//Input donde se ingresa la contraseña:
 const pass= document.getElementById('passwordInput');
   pass.addEventListener('keyup', (e) => validField(passValidation(e.target.value),"password"));
   pass.addEventListener('blur',(e) => validField(passValidation(e.target.value),"password"));
 
+//Obtención del formulario, validación de ambos campos y redirección a la página de inicio:
 const form=document.getElementById("sing-in");
-form.addEventListener("submit", function(evento){
-  evento.preventDefault();
+form.addEventListener("submit", function(e){
+  e.preventDefault();
   if (validEmail.test(form.email.value) && passValidation(form.password.value)) {
     document.getElementById('sendData').classList.add('visually-hidden');
-    window.location.href = "index.html";
+    document.getElementById('signIn').submit(); //Formulario oculto utilizado para la redirección entre páginas.
   } else
     document.getElementById('sendData').classList.remove('visually-hidden');
 });

@@ -19,7 +19,7 @@
 <body>
   <main class="mt-4">
     <div class="container text-center form-signing w-50">
-      <form action="" id="sing-in">
+      <form id="sing-in">
         <img class="w-75" src="img/login.png" alt="">
         <h1 class="h4 mb-3 fw-bold text-decoration-underline">Inicio de sesión</h1>
 
@@ -50,6 +50,10 @@
             <small>Complete todos los campos correctamente.</small>
           </div>
         </div>
+      </form>
+      <!-- Formulario oculto utilizado para la redirección entre páginas: -->
+      <form action="index.html" id="signIn">
+        <input type="hidden" name="logged" value="true">
       </form>
     </div>
   </main>
