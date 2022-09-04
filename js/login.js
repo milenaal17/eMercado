@@ -54,7 +54,8 @@ form.addEventListener("submit", function(e){
   e.preventDefault();
   if (validEmail.test(form.email.value) && passValidation(form.password.value)) {
     document.getElementById('sendData').classList.add('visually-hidden');
-    document.getElementById('signIn').submit(); //Formulario oculto utilizado para la redirección entre páginas.
+    localStorage.setItem("user", form.email.value);
+    window.location.href= "index.html";
   } else
     document.getElementById('sendData').classList.remove('visually-hidden');
 });

@@ -39,3 +39,18 @@ let getJSONData = function(url){
         return result;
     });
 }
+
+//4to elemento li del nav, correspondiente al espacio del usuario:
+let profileLi= document.getElementsByClassName("nav-item")[3];
+profileLi.classList.add("d-flex");
+//Muestra en la barra de navegación el email de la cuenta logueada:
+profileLi.innerHTML=`
+  <a class="nav-link active" href="" id="userName">${localStorage.getItem("user")}</a>
+  <!-- Botón para salir de la cuenta (regresa al login) -->
+  <button class="btn btn-dark" id="signOut"><i class="fas fa-sign-out-alt mr-1"></i></button>
+`;
+//Al hacer click en el botón para salir de la cuenta:
+document.getElementById("signOut").addEventListener("click", () => {
+  localStorage.removeItem("user");
+  window.location.href= "login.html"; //Vuelve al login
+})

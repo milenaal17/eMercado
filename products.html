@@ -36,9 +36,56 @@
       </div>
     </div>
   </nav>
-  <main class="pb-5 container">
-    <div id="mainBox" class="container">
-      
+  <main id="mainBox" class="pb-5 container">
+    <div class="text-center p-4">
+      <h2>Productos</h2>
+      <p class="lead">Verás aquí todos los productos de la categoría <span id="catName"></span>.</p>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col text-end">
+          <div class="btn-group btn-group-toggle mb-4" data-bs-toggle="buttons">
+            <!-- Criterios de ordenación -->
+            <input type="radio" class="btn-check" name="options" id="descOrder">
+            <label class="btn btn-light" title="Orden por precio descendente" for="descOrder" id="descOrderBtn"><i class="fas fa-sort-amount-down mr-1"></i>$</label>
+            <input type="radio" class="btn-check" name="options" id="ascOrder">
+            <label class="btn btn-light" title="Orden por precio ascendente" for="ascOrder" id="ascOrderBtn"><i class="fas fa-sort-amount-up mr-1"></i>$</label>
+            <input type="radio" class="btn-check" name="options" id="relOrder">
+            <label class="btn btn-light" title="Orden por relevancia" for="relOrder" id="relOrderBtn"><i class="fas fa-sort-amount-down mr-1"></i>Rel.</label>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 mb-1 container">
+          <div class="row container p-0 m-0">
+            <div class="col-auto d-flex mb-1" role="search"> 
+              <!-- Barra de búsqueda -->
+              <label class="btn disabled" for="searchInput"><i class="fas fa-search mr-1"></i></label>
+              <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search" id="searchInput">
+            </div>
+            <!-- Controles de precio -->
+            <div class="col offset-lg-2">
+              <p class="font-weight-normal text-end my-2">Precio:</p>
+            </div>
+            <div class="col m-0 p-0">
+              <input class="form-control" type="number" placeholder="min." id="minPrice">
+            </div>
+            <div class="col m-0">
+              <input class="form-control" type="number" placeholder="máx." id="maxPrice">
+            </div>
+            <div class="col-auto p-0">
+              
+                <button class="btn btn-dark btn-block" id="filterPrice">Filtrar</button>
+                <button class="btn btn-outline-dark btn-sm" id="clearPrice">Limpiar</button>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="list-group" id="product-list">
+        </div>
+      </div>
     </div>
   </main>
   <footer class="text-muted">
