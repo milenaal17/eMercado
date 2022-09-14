@@ -1,5 +1,5 @@
 //URL a utilizar, haciendo uso de local storage para que aplique a cualquier categoria elegida:
-const url =`https://japceibal.github.io/emercado-api/cats_products/${localStorage.getItem("catID")}.json`;
+const url =PRODUCTS_URL + localStorage.getItem("catID") + EXT_TYPE;
 
 //Variables globales:
 let originalProductsList= [];
@@ -57,15 +57,20 @@ function orderProducts(orderCrit, notCrit1, notCrit2){
 
 //Incorpora la lista de productos de la categoría seleccionada en la url:
 function showProductsList(){
-  let htmlCode="";
+  let prodContainer= document.getElementById(`product-list`);
+  //Para eliminar cualquier contenido previo:
+  prodContainer.innerHTML = "";
   for (let product of currentProductsList) {
     //Controla si se cumplen las condiciones de minimo, maximo y coincidencia de busqueda:
     if ((minPrice==undefined || product.cost >= minPrice) &&
         (maxPrice==undefined || product.cost <= maxPrice) && 
         (product.name.toLowerCase().includes(toSearch) || product.description.toLowerCase().includes(toSearch))){
       
-      htmlCode += `
-        <div class="list-group-item list-group-item-action cursor-active">
+      //Se crea el div contenedor con document para que se pueda referenciar mas
+      let divToAppend= document.createElement("div");
+      divToAppend.classList.add("list-group-item", "list-group-item-action", "cursor-active")
+      divToAppend.id= product.id;
+      divToAppend.innerHTML= `
           <div class="row">
             <div class="col-3">
               <img src="${product.image}" alt="${product.description}" class="img-thumbnail">
@@ -78,11 +83,18 @@ function showProductsList(){
               <p class="mb-1">${product.description}</p>
              </div>
           </div>
-        </div>
         `;
+      prodContainer.appendChild(divToAppend);
+      divToAppend.addEventListener("click",()=> setProductID(divToAppend.id));
     }
   }
-  document.getElementById(`product-list`).innerHTML = htmlCode;
+  //Por si no hay productos que mostrar:
+  if (prodContainer.innerHTML == "") {
+    let noProducts= document.createElement('h5');
+    noProducts.classList.add("text-center", "alert-danger", "fw-bold", "p-2");
+    noProducts.innerHTML= "No se encontraron productos";
+    prodContainer.appendChild(noProducts);
+  }
 }
 
 //Se realiza el pedido al servidor con la url cuando los contenidos del DOM estan cargados:

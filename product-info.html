@@ -37,9 +37,92 @@
     </div>
   </nav>
   <main>
-    <div class="container">
-      <div class="alert alert-danger text-center" role="alert">
-        <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
+    <div class="container" id="product-info">
+      <!-- Contiene informacion y datos del producto -->
+      <div class="row mt-4 border-bottom mb-3 pb-3" >
+        <div class="col-lg mt-3 mb-4">
+          <div class="img-thumbnail shadow p-1">
+            <div id="myCarousel" class="carousel slide m-auto" data-bs-ride="carousel">
+              <div class="carousel-indicators" id="carouselBtns">
+              </div>
+              <div class="carousel-inner" id="carouselItems">
+              </div>
+              <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+                </button>
+              <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="col align-content-between">
+          <div class="row m-2 mt-0 p-1 border-bottom">
+            <h2 class="card-title" id="name"></h2>
+          </div>
+          <div class="row m-2 p-1 border-bottom">
+            <h6 class="mb-0 fw-bold">Precio:</h6>
+            <h4 class="ms-4 fw-bolder text-success" id="price"></h4>
+          </div>
+          <div class="row m-2 p-1 border-bottom">
+            <h6 class="mb-1 fw-bold">Descripcion:</h6>
+            <h6 class="ms-4" id="desc"></h6>
+          </div>
+          <div class="row m-2 p-1 border-bottom">
+            <h6 class="mb-1 fw-bold">Categoria:</h6>
+            <h6 class="ms-4" id="cat"></h6>
+          </div>
+          <div class="row m-2 p-1">
+            <h6 class="mb-1 fw-bold">Cantidad de vendidos:</h6>
+            <h6 class="ms-4" id="sold"></h6>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contiene la lista de productos relacionados -->
+      <div class="row border-bottom mb-3 pb-3">
+        <h5 class="h5 mt-1">Productos relacionados:</h5>
+        <div class="ms-3 list-group list-group-horizontal" id="relatedProducts">
+        </div>
+      </div>
+
+      <!-- Comentarios -->
+      <div class="row">
+        <!-- Contiene la lista de comentarios del producto -->
+        <div class="col-lg mt-2">
+          <h5 class="h5 mt-1">Comentarios:</h5>
+          <div class="ms-3 list-group" id="prodComments">
+          </div>
+        </div>
+        <!-- Contiene el formulario para comentar -->
+        <div class="col mt-2">
+          <div class="border p-2 rounded-3" id="comment-form">
+            <h5 class="h5 m-2 mt-1">Comentar:</h5>
+            <form id="comment" class="ms-3 d-block">
+              <label class="form-label d-block" for="productOpinion">Tu opinion: </label>  
+              <textarea name="opinion" rows="5" class="ms-3 p-3 rounded-3 w-75" id="productOpinion"></textarea>
+              <label class="form-label d-block">Tu puntuacion: </label>
+              <div id="starScore" class=" text-secondary ms-3 user-select-none">
+                <input type="radio" class="btn-check" name="stars" id="1">
+                <label class="form-check-label fs-5 p-3 pt-0 m-0" title="1 estrella" for="1" id="star1Btn"><i class="fas fa-star"></i></label>
+                <input type="radio" class="btn-check" name="stars" id="2">
+                <label class="form-check-label fs-5 p-3 pt-0" title="2 estrellas" for="2" id="star2Btn"><i class="fas fa-star"></i></label>
+                <input type="radio" class="btn-check" name="stars" id="3">
+                <label class="form-check-label fs-5 p-3 pt-0" title="3 estrellas" for="3" id="star3Btn"><i class="fas fa-star"></i></label>
+                <input type="radio" class="btn-check" name="stars" id="4">
+                <label class="form-check-label fs-5 p-3 pt-0" title="4 estrellas" for="4" id="star4Btn"><i class="fas fa-star"></i></label>
+                <input type="radio" class="btn-check" name="stars" id="5">
+                <label class="form-check-label fs-5 p-3 pt-0" title="5 estrellas" for="5" id="star4Btn"><i class="fas fa-star"></i></label>
+              </div>
+              <div class="small alert-danger p-1 ms-4 visually-hidden text-center" id="sendStars">
+                <small>Debe dar una puntuacion al producto.</small>
+              </div>
+              <button type="submit" class="m-3 btn btn-lg btn-primary">Enviar</button>
+            </form>
+          </div>
+        </div>
       </div>
     </div>
   </main>

@@ -188,3 +188,15 @@ a.custom-card:hover {
 .checked {
   color: orange;
 }
+
+.carousel-control-prev-icon, .carousel-control-next-icon, .slides{
+  filter: drop-shadow(0 0 3px #555)drop-shadow(0 0 3px #555);
+}
+.prodRel{
+  min-width: 200px;
+}
+
+#sendStars{
+  width: max-content;
+}
+
