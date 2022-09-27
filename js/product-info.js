@@ -5,11 +5,13 @@ const commentsURL =PRODUCT_INFO_COMMENTS_URL + localStorage.getItem("productID")
 //Variables globales:
 let productInfo= [];
 let productComments= [];
+let scrollRel= document.getElementById('carouselRel'); //Elemento contenedor de la lista de productos relacionados
 let score= document.querySelectorAll('#starScore label'); //Todas las estrellas del formulario = puntuacion total
 
 //Crea el carusel de imagenes del producto:
 function carouselCreate(){
   for (const imgInd in productInfo.images) {
+    //Control e indice:
     let cBtn= document.createElement('button');
     cBtn.type="button";
     cBtn.classList.add("slides");
@@ -17,15 +19,18 @@ function carouselCreate(){
     cBtn.dataset.bsSlideTo=imgInd;
     cBtn.ariaLabel=`Slide ${parseInt(imgInd)+1}`;
     
+    //Imagen:
     let cItem= document.createElement('div');
     cItem.classList.add('carousel-item');
     cItem.innerHTML= `<img src="${productInfo.images[imgInd]}" alt="image${imgInd}" class="bd-placeholder-img w-100 border rounded" aria-hidden="true" focusable="false">`;
     
+    //Clases especificas de los primeros elementos:
     if (imgInd==0) {
       cBtn.classList.add('active');
       cItem.classList.add('active');
     }
 
+    //Se agregan al documento
     document.getElementById('carouselBtns').appendChild(cBtn);
     document.getElementById('carouselItems').appendChild(cItem);
   };
@@ -35,19 +40,19 @@ function carouselCreate(){
 function relatedProductsList(){
   for (const product of productInfo.relatedProducts) {
     let relatedProduct= document.createElement("div");
-    relatedProduct.classList.add("list-group-item", "list-group-item-action", "w-25", "prodRel");
+    relatedProduct.classList.add("list-group-item", "list-group-item-action", "prodRel");
     relatedProduct.id= product.id;
     relatedProduct.innerHTML=`
         <div class="row align-items-center">
           <div class="col">
-            <img src="${product.image}" alt="relatedImage${product.id}" class="w-100">
+            <img src="${product.image}" alt="relatedImage${product.id}" class="imgRel">
           </div>
           <div class="col">
             <h6>${product.name}</h6>
           </div>
         </div>
     `;
-    document.getElementById('relatedProducts').appendChild(relatedProduct);
+    document.getElementById('relatedProductsList').appendChild(relatedProduct);
     relatedProduct.addEventListener("click",()=>setProductID(relatedProduct.id)) 
   };
 }
@@ -65,8 +70,8 @@ function addProductComment(comment){
   commentToAdd.classList.add("list-group-item");
   commentToAdd.innerHTML=`
     <div class="row align-items-center">
-      <p class="m-0 p-0 ms-3"><b>${comment.user}</b> - ${comment.dateTime} - <span class="d-inline-block">${stars}</span></p>
-      <p class="m-0 p-0 ms-3 text-secondary">${comment.description}</p>
+      <p class="m-0 p-0 ps-3"><b>${comment.user}</b> - ${comment.dateTime} - <span class="d-inline-block">${stars}</span></p>
+      <p class="m-0 p-0 ps-3 text-secondary">${comment.description}</p>
     </div>
   `;
   document.getElementById("prodComments").appendChild(commentToAdd);
@@ -119,7 +124,27 @@ document.addEventListener('DOMContentLoaded', function (){
       for (const comment of productComments) {
         addProductComment(comment);
       }
+      if (productComments.length==0) {
+        document.getElementById('noComments').classList.remove("visually-hidden");
+      }
   }); 
+
+  //Botones de los productos relacionados:
+  window.addEventListener('resize',()=>{
+    if (scrollRel.scrollWidth>scrollRel.clientWidth) {
+      document.getElementById('prevArrowRel').classList.remove("invisible");
+      document.getElementById('nextArrowRel').classList.remove("invisible");
+    }else{
+      document.getElementById('prevArrowRel').classList.add("invisible");
+      document.getElementById('nextArrowRel').classList.add("invisible");
+    }
+  },true)
+  document.getElementById('prevArrowRel').addEventListener('click',()=>{
+    scrollRel.scrollLeft -= 300;
+  });
+  document.getElementById('nextArrowRel').addEventListener('click',()=>{
+    scrollRel.scrollLeft += 300;
+  });
   
   //FORMULARIO:
   //Escucha cuando se clickea o se para sobre alguna de las estrellas del formulario y "colorea" segun corresponda:
@@ -142,7 +167,7 @@ document.addEventListener('DOMContentLoaded', function (){
   document.getElementById("comment").addEventListener('submit',(e)=>{
     e.preventDefault();
     let now= new Date();
-    let month= (now.getMonth()>9)?now.getMonth():`0${now.getMonth()}`;
+    let month= (now.getMonth()+1>9)?now.getMonth()+1:`0${now.getMonth()+1}`;
     let day= (now.getDate()>9)?now.getDate():`0${now.getDate()}`;
     let dateForm=`${now.getFullYear()}-${month}-${day} ${now.getHours()}:${now.getMinutes()}:${now.getSeconds()}`;
     let stars= checkedStar(); 
@@ -157,10 +182,16 @@ document.addEventListener('DOMContentLoaded', function (){
         score: stars+1,
         user: localStorage.getItem("user")
       };
+      document.getElementById('noComments').classList.add("visually-hidden");
       addProductComment(newComment);
       
       //Reinicia el formulario
       e.target.opinion.value="";
+
+      coloredStars(score[0]);
+      score[0].classList.remove("checked");
+      score[checkedStar()].control.checked=false;
+
       for (const star of score) {
         star.classList.remove("checked");
         star.control.checked=false;

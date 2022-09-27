@@ -25,31 +25,16 @@ function orderProducts(orderCrit, notCrit1, notCrit2){
 
       //Ordenacion segun criterio:
       if (orderCrit === "ascOrder")
-        currentProductsList.sort((a,b) => {
-          if (a.cost < b.cost) return -1;
-          if (a.cost > b.cost) return 1;
-          return 0;
-        })
+        currentProductsList.sort((a,b) => a.cost-b.cost);
       else if (orderCrit === "descOrder")
-        currentProductsList.sort((a,b) => {
-          if (a.cost > b.cost) return -1;
-          if (a.cost < b.cost) return 1;
-          return 0;
-        })
+        currentProductsList.sort((a,b) => b.cost-a.cost);
       else if (orderCrit === "relOrder")
-        currentProductsList.sort((a,b) => {
-          if (a.soldCount > b.soldCount) return -1;
-          if (a.soldCount < b.soldCount) return 1;
-          return 0;
-        })
+        currentProductsList.sort((a,b) => b.soldCount-a.soldCount);
     } else {
       //Si el boton ya habia sido seleccionado se "deselecciona" y muestra la lista en el orden original:
       sortBtn.classList.remove("btn-dark");
       sortBtn.classList.add("btn-light");
-      currentProductsList= [];
-      for (const product of originalProductsList) {
-        currentProductsList.push(product);
-      }
+      currentProductsList= originalProductsList.slice();
     }
     //Muestra la nueva lista:
     showProductsList();
@@ -105,9 +90,7 @@ document.addEventListener('DOMContentLoaded', function (){
     if (dataObject.status === "ok")
       currentProductsList= dataObject.data.products;
       //Hace una copia completamente independiente, si se modifica currentProductsList no se ve afectado:
-      for (const product of currentProductsList) {
-        originalProductsList.push(product);
-      }
+      originalProductsList= currentProductsList.slice();
       document.getElementById("catName").innerHTML=dataObject.data.catName;
       showProductsList();
   });  

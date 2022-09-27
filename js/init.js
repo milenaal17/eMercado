@@ -42,13 +42,34 @@ let getJSONData = function(url){
 
 //4to elemento li del nav, correspondiente al espacio del usuario:
 let profileLi= document.getElementsByClassName("nav-item")[3];
-profileLi.classList.add("d-flex");
-//Muestra en la barra de navegación el email de la cuenta logueada:
+//Muestra en la barra de navegación el email de la cuenta logueada como un menu desplegable:
 profileLi.innerHTML=`
-  <a class="nav-link active" href="" id="userName">${localStorage.getItem("user")}</a>
-  <!-- Botón para salir de la cuenta (regresa al login) -->
-  <button class="btn btn-dark" id="signOut" aria-label="cerrarSesion"><i class="fas fa-sign-out-alt mr-1"></i></button>
+  <div class="dropdown" id="drop">
+    <!-- Se hace uso de "collapse" para la visualizacion y animacion del menu desplegable  -->
+    <a class="nav-link active" href=# data-bs-toggle="collapse" data-bs-target="#dropMenu" aria-expanded="false" id="userName">
+      ${localStorage.getItem("user")}  <i class="fas fa-angle-down ms-2" id="dropArrow"></i>
+    </a>  
+    <div id="dropMenu" class="collapse position-absolute w-100">
+      <ul class="list-group list-group-flush dropdown-menu-dark show w-100 mt-1 p-1 border-dark border-2 rounded-0 rounded-bottom ">
+        <!-- Enlace a la pagina de carrito de compras -->
+        <li><a class="dropdown-item p-1 ps-3" href="cart.html">Mi carrito <i class="fas fa-shopping-cart ms-2"></i></a></li>
+
+        <!-- Enlace al perfil del usuario -->
+        <li><a class="dropdown-item p-1 ps-3" href="my-profile.html">Mi perfil <i class="fas fa-user-alt ms-2"></i></a></li>
+
+        <!-- Boton para cerrar sesion, redirige al login -->
+        <li class="border-top border-secondary mt-1 pt-1">
+          <button class="dropdown-item p-1 ps-3" id="signOut">Cerrar Sesion <i class="fas fa-sign-out-alt ms-2"></i></button>
+        </li>
+      </ul> 
+    </div> 
+  </div>
 `;
+//Agrega la clase que rota la flecha en el menu desplegable:
+document.getElementById("userName").addEventListener("click",()=>{
+  document.getElementById("dropArrow").classList.toggle("dropRotate");
+})
+
 //Al hacer click en el botón para salir de la cuenta:
 document.getElementById("signOut").addEventListener("click", () => {
   localStorage.removeItem("user");

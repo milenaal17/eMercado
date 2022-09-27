@@ -192,11 +192,58 @@ a.custom-card:hover {
 .carousel-control-prev-icon, .carousel-control-next-icon, .slides{
   filter: drop-shadow(0 0 3px #555)drop-shadow(0 0 3px #555);
 }
-.prodRel{
-  min-width: 200px;
-}
 
-#sendStars{
+#containerRel{
+  min-width: 400px;
+}
+.prodRel{
+  width: 300px;
+  min-width: 300px;
+  transition: all 0.3s ease;
+}
+.prodRel:hover{
+  box-shadow: 0px 0px 10px #ccc9;
+  transform: scale(1.1);
+  transform-origin: center;
+  cursor: pointer;
+}
+.imgRel{
+  width: 150px;
+}
+#carouselRel{
+  scroll-behavior: smooth;
+}
+#relatedProductsList{
+  scroll-behavior: smooth;
   width: max-content;
 }
+#prevArrowRel, #nextArrowRel{
+  min-width: max-content;
+}
 
+#sendStars, #drop{
+  width: max-content;
+}
+#scrollComments{
+  max-height: 70vh;
+  background-color: #dee2e6;
+}
+#scrollComments::-webkit-scrollbar{
+  width: 7px;
+  background-color: #dee2e6;
+}
+#scrollComments::-webkit-scrollbar-thumb{
+  background-color: #212529;
+  border-radius: 5px;
+}
+
+#dropArrow{
+  transition: all .3s;
+}
+.dropRotate{
+  transform: rotate(180deg);
+  transition: all .3s;
+}
+.dropdown-item:active{
+  background-color: #6c757d!important;
+}

@@ -82,9 +82,27 @@
       </div>
 
       <!-- Contiene la lista de productos relacionados -->
-      <div class="row border-bottom mb-3 pb-3">
+      <div class="row border-bottom mb-3 pb-3" id="containerRel">
         <h5 class="h5 mt-1">Productos relacionados:</h5>
-        <div class="ms-3 list-group list-group-horizontal" id="relatedProducts">
+        <div class="d-flex align-items-center position-relative w-100 mb-2" id="relatedProducts">
+          <div class="me-1">
+            <button id="prevArrowRel" class="carousel-control-prev position-static invisible" type="button">
+              <i class="carousel-control-prev-icon" aria-hidden="true"></i>
+              <span class="visually-hidden">Previous</span>
+            </button>
+          </div>
+          <div class="flex-fill overflow-hidden">
+            <div class="overflow-hidden p-3" id="carouselRel">
+              <div class="list-group list-group-horizontal shadow-sm" id="relatedProductsList">
+              </div>
+            </div>
+          </div>
+          <div class="ms-1">
+            <button id="nextArrowRel" class="carousel-control-next position-static invisible" type="button">
+              <i class="carousel-control-next-icon" aria-hidden="true"></i>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
         </div>
       </div>
 
@@ -93,12 +111,19 @@
         <!-- Contiene la lista de comentarios del producto -->
         <div class="col-lg mt-2">
           <h5 class="h5 mt-1">Comentarios:</h5>
-          <div class="ms-3 list-group" id="prodComments">
+          <h6 class="text-center alert-info fw-bold p-2 visually-hidden rounded m-2" id="noComments">
+            Este producto no tiene comentarios todavía.
+            <br>
+            ¡Sé el primero en dar tu opinion! 
+          </h6>
+          <div class="mb-3 ms-3 overflow-auto border border-end-0 border-start-0 rounded" id="scrollComments">
+            <div class="list-group w-100" id="prodComments">
+            </div>
           </div>
         </div>
         <!-- Contiene el formulario para comentar -->
         <div class="col mt-2">
-          <div class="border p-2 rounded-3" id="comment-form">
+          <div class="border p-2 rounded-3 ps-4 shadow" id="comment-form">
             <h5 class="h5 m-2 mt-1">Comentar:</h5>
             <form id="comment" class="ms-3 d-block">
               <label class="form-label d-block" for="productOpinion">Tu opinion: </label>  
