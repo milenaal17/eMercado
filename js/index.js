@@ -7,6 +7,17 @@ document.addEventListener("DOMContentLoaded", function(){
   else{
     //Si está logueado:
     document.getElementById("profile").classList.remove("invisible");
+    let cartList= localStorage.getItem("cartList");
+    if (cartList==null){
+      getJSONData(cartURL).then(function(cartInfo){
+        if (cartInfo.status === "ok"){
+          let cartListAPI=[];
+          for (const article of cartInfo.data.articles)
+            cartListAPI.push(article);        
+          localStorage.setItem("cartList",JSON.stringify(cartListAPI));
+        }
+      })
+    } 
   }
 
   document.getElementById("autos").addEventListener("click", function() {

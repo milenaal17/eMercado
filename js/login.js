@@ -10,31 +10,31 @@ const validPass={
 function validField(ok,field){
   if (ok) {
     document.getElementById(`${field}Alert`).classList.add('visually-hidden');
-    document.getElementById(`${field}Input`).classList.remove('border-danger');
+    document.getElementById(`${field}Input`).classList.remove('is-invalid');
+    document.getElementById(`${field}Input`).classList.add('is-valid');
   } else {
     document.getElementById(`${field}Alert`).classList.remove('visually-hidden');
-    document.getElementById(`${field}Input`).classList.add('border-danger');
+    document.getElementById(`${field}Input`).classList.remove('is-valid');
+    document.getElementById(`${field}Input`).classList.add('is-invalid');
   };
 }
 
 // Validación de contraseña, posteriormente se implementará en el registro.
 function passValidation(key){
-    console.log(key);
     boolArray=[
-        key.length>7,
-        validPass.upp.test(key), //mayúsculas
-        validPass.low.test(key), //minúsculas
-        validPass.num.test(key), //números
-        validPass.symb.test(key), //símbolos
+      key.length>7,
+      validPass.upp.test(key), //mayúsculas
+      validPass.low.test(key), //minúsculas
+      validPass.num.test(key), //números
+      validPass.symb.test(key), //símbolos
     ];
     let resp= true;
     for (let i = 0; i < boolArray.length; i++) {
-        console.log(`${i}:${boolArray[i]}`)
-        if (boolArray[i])
-            document.getElementById(`${i}`).classList.add('visually-hidden');
-        else
-            document.getElementById(`${i}`).classList.remove('visually-hidden');
-        resp=resp && boolArray[i];
+      if (boolArray[i])
+          document.getElementById(`${i}`).classList.add('visually-hidden');
+      else
+          document.getElementById(`${i}`).classList.remove('visually-hidden');
+      resp=resp && boolArray[i];
     }
     return resp;
 }

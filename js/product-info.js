@@ -7,6 +7,9 @@ let productInfo= [];
 let productComments= [];
 let scrollRel= document.getElementById('carouselRel'); //Elemento contenedor de la lista de productos relacionados
 let score= document.querySelectorAll('#starScore label'); //Todas las estrellas del formulario = puntuacion total
+let cartList=[];
+let btnCartAdd= document.getElementById('btnCartAdd');
+let btnCartRemove= document.getElementById('btnCartRemove');
 
 //Crea el carusel de imagenes del producto:
 function carouselCreate(){
@@ -98,6 +101,17 @@ function checkedStar (){
   return resp;
 }
 
+function getCart(name) {
+  cartList= localStorage.getItem("cartList");
+  if (cartList!=null)
+    cartList= JSON.parse(cartList);
+  let cartFlag= cartList.find(article=> article.name==name);
+  if (cartFlag!=undefined)
+    btnCartRemove.classList.remove("visually-hidden");
+  else
+    btnCartAdd.classList.remove("visually-hidden");
+}
+
 //Se realiza el pedido al servidor con las url cuando los contenidos del DOM estan cargados:
 document.addEventListener('DOMContentLoaded', function (){
   //Obtencion de los datos e informacion del producto:
@@ -112,9 +126,12 @@ document.addEventListener('DOMContentLoaded', function (){
       document.getElementById('desc').innerHTML=productInfo.description;
       document.getElementById('cat').innerHTML=productInfo.category;
       document.getElementById('sold').innerHTML=productInfo.soldCount;
- 
+
       //Productos relacionados:
       relatedProductsList();
+
+      getCart(productInfo.name);
+      console.log(cartList)
     });
   //Obtencion de los comentarios del producto:
   getJSONData(commentsURL).then(function(dataComments){
@@ -196,6 +213,32 @@ document.addEventListener('DOMContentLoaded', function (){
         star.classList.remove("checked");
         star.control.checked=false;
       } 
+    }
+  })
+  btnCartAdd.addEventListener('click',()=>{
+    let add= {
+      id: productInfo.id,
+      name: productInfo.name,
+      count: 1,
+      unitCost: productInfo.cost,
+      currency: productInfo.currency,
+      image: productInfo.images[0]
+    }
+    cartList.push(add);
+    localStorage.setItem("cartList",JSON.stringify(cartList));
+    btnCartAdd.classList.add("visually-hidden");
+    btnCartRemove.classList.remove("visually-hidden");
+    window.location.href= "cart.html"
+  })
+  btnCartRemove.addEventListener('click',()=>{
+    let i=0
+    while (i<cartList.length && cartList[i].name != productInfo.name) 
+      i++;
+    if (i<cartList.length) {
+      cartList.splice(i,1);
+      localStorage.setItem("cartList",JSON.stringify(cartList));
+      btnCartRemove.classList.add("visually-hidden");
+      btnCartAdd.classList.remove("visually-hidden");
     }
   })
 })

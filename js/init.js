@@ -50,16 +50,16 @@ profileLi.innerHTML=`
       ${localStorage.getItem("user")}  <i class="fas fa-angle-down ms-2" id="dropArrow"></i>
     </a>  
     <div id="dropMenu" class="collapse position-absolute w-100">
-      <ul class="list-group list-group-flush dropdown-menu-dark show w-100 mt-1 p-1 border-dark border-2 rounded-0 rounded-bottom ">
+      <ul class="list-group list-group-flush dropdown-menu-dark show w-100 mt-1 p-1 border-dark border-2 rounded-0 rounded-bottom list-unstyled">
         <!-- Enlace a la pagina de carrito de compras -->
-        <li><a class="dropdown-item p-1 ps-3" href="cart.html">Mi carrito <i class="fas fa-shopping-cart ms-2"></i></a></li>
+        <li><a class="dropdown-item p-1 px-3" href="cart.html">Mi carrito <i class="fas fa-shopping-cart ms-2"></i></a></li>
 
         <!-- Enlace al perfil del usuario -->
-        <li><a class="dropdown-item p-1 ps-3" href="my-profile.html">Mi perfil <i class="fas fa-user-alt ms-2"></i></a></li>
+        <li><a class="dropdown-item p-1 px-3" href="my-profile.html">Mi perfil <i class="fas fa-user-alt ms-2"></i></a></li>
 
         <!-- Boton para cerrar sesion, redirige al login -->
         <li class="border-top border-secondary mt-1 pt-1">
-          <button class="dropdown-item p-1 ps-3" id="signOut">Cerrar Sesion <i class="fas fa-sign-out-alt ms-2"></i></button>
+          <button class="dropdown-item p-1 px-3" id="signOut">Cerrar Sesion <i class="fas fa-sign-out-alt ms-2"></i></button>
         </li>
       </ul> 
     </div> 
@@ -73,6 +73,7 @@ document.getElementById("userName").addEventListener("click",()=>{
 //Al hacer click en el botón para salir de la cuenta:
 document.getElementById("signOut").addEventListener("click", () => {
   localStorage.removeItem("user");
+  localStorage.removeItem("cartList");
   window.location.href= "login.html"; //Vuelve al login
 })
 
@@ -81,3 +82,5 @@ function setProductID(id) {
   localStorage.setItem("productID", id);
   window.location = "product-info.html"
 }
+
+let cartURL =CART_INFO_URL + 25801 + EXT_TYPE;

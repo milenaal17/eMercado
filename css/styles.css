@@ -237,6 +237,9 @@ a.custom-card:hover {
   border-radius: 5px;
 }
 
+#dropMenu{
+  min-width: max-content;
+}
 #dropArrow{
   transition: all .3s;
 }
@@ -246,4 +249,25 @@ a.custom-card:hover {
 }
 .dropdown-item:active{
   background-color: #6c757d!important;
+}
+
+.cantInputs{
+  max-width: 80px !important;
+}
+.cartImg{
+  max-height: 75px;
+}
+#btnCartAdd, #btnCartRemove{
+  width: max-content;
+}
+
+@media screen and (max-width: 900px) {
+  #backCart{
+    content: "";
+    position: static !important;
+    margin-bottom: 1rem;
+  }
+  #cart{
+    width: 100% !important;
+  }
 }
