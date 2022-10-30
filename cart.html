@@ -36,81 +36,214 @@
     </div>
   </nav>
   <main>
-    <div class="container p-4 w-75" id="cart">
+    <div class="container p-4 mx-auto" id="cart">
       <div>
         <button class="btn btn-dark btn-sm ms-2 position-absolute" id="backCart"><i class="fas fa-arrow-left me-2"></i> Seguir comprando</button>
         <h2 class="text-center">Carrito de compras</h2>
-        <h4>Articulos a comprar</h4>
+        <h4 class="ms-3">Articulos a comprar</h4>
       </div>
-      <div class="table-responsive overflow-auto mb-3">
-        <table class="table table-hover mb-0">
-          <thead class="table-dark align-middle text-center">
-            <tr>
-              <th scope="col"></th>
-              <th scope="col">Nombre</th>
-              <th scope="col">Costo</th>
-              <th scope="col">Cantidad</th>
-              <th scope="col">Subtotal</th>
-            </tr>
-          </thead>
-          <tbody id="cartProducts">
-            
-          </tbody>
-          <tfoot>
-            <tr class="table-dark border-top border-white border-5">
-              <th scope="row" colspan="5"></th>
-            </tr>
-          </tfoot>
-        </table>
-      </div>
-      <form>
-        <div class="ms-4">
-
-          <h5>Tipos de envio</h5>
-          <div class="ms-4">
-            <div class="form-check my-3">
-              <input class="form-check-input" type="radio" name="selectType" id="premium">
-              <label class="form-check-label" for="premium">
-                <strong>Premium</strong> de 2 a 5 dias (15%)
-              </label>
-            </div>
-            <div class="form-check my-3">
-              <input class="form-check-input" type="radio" name="selectType" id="express">
-              <label class="form-check-label" for="express">
-                <strong>Expres</strong> de 5 a 8 dias (7%)
-              </label>
-            </div>
-            <div class="form-check my-3">
-              <input class="form-check-input" type="radio" name="selectType" id="standard" checked>
-              <label class="form-check-label" for="standard">
-                <strong>Standard</strong> de 12 a 15 dias (5%)
-              </label>
-            </div>
-          </div>
-          <h5>Direccion de envio</h5>
-          <div class="ms-4 w-75">
-            <div class="row mb-2">
-              <div class="col">
-                <label for="calle" class="form-label ms-3">Calle</label>
-                <input type="text" class="form-control" id="calle">
-              </div>
-              <div class="col">
-                <label for="num" class="form-label ms-3">Numero</label>
-                <input type="text" class="form-control" id="num">
-              </div>
-            </div>
-            <div class="row mb-2">
-              <div class="col">
-                <label for="esq" class="form-label ms-3">Esquina</label>
-                <input type="text" class="form-control" id="esq">
-              </div>
-            </div>
+      <div class="row">
+        <div class="col-xl-7 col-12">
+          <!--Tabla de productos en el carrito-->
+          <div class="table-responsive overflow-auto mb-3">
+            <table class="table table-hover mb-0">
+              <thead class="table-dark align-middle text-center fs-5">
+                <tr>
+                  <th scope="col"></th>
+                  <th scope="col">Nombre</th>
+                  <th scope="col">Costo</th>
+                  <th scope="col">Cantidad</th>
+                  <th scope="col">Subtotal</th>
+                  <th scope="col"></th>
+                </tr>
+              </thead>
+              <tbody id="cartProducts">
+                <!--Lista de productos-->
+              </tbody>
+              <tfoot class="table-dark border-top border-white border-5 fs-5">
+                <tr>
+                  <th scope="row" colspan="6"></th>
+                </tr>
+              </tfoot>
+            </table>
           </div>
         </div>
-        <div class="text-center w-75 mx-auto">
-          <button class="btn btn-success fs-5 w-100" type="submit">Comprar</button>
+        <div class="col-xl-5 col-12 bg-light border rounded p-4">
+          <form action="" id="toBuy" novalidate>
+            <!--Tipo y direccion de envio-->
+            <div class="row p-3 pt-2">
+              <div class="col-xl-12 col-lg-4 pe-4">
+                <h5>Tipo de envio</h5>
+                <div class="ps-4 rounded" id="shippingType">
+                  <div class="form-check my-3">
+                    <input class="form-check-input" type="radio" name="selectType" id="premium">
+                    <label class="form-check-label" for="premium">
+                      <strong>Premium</strong> de 2 a 5 dias (15%)
+                    </label>
+                  </div>
+                  <div class="form-check my-3">
+                    <input class="form-check-input" type="radio" name="selectType" id="express">
+                    <label class="form-check-label" for="express">
+                      <strong>Express</strong> de 5 a 8 dias (7%)
+                    </label>
+                  </div>
+                  <div class="form-check my-3">
+                    <input class="form-check-input" type="radio" name="selectType" id="standard" checked>
+                    <label class="form-check-label" for="standard">
+                      <strong>Standard</strong> de 12 a 15 dias (5%)
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-12 col-lg-8">
+                <h5>Direccion de envio</h5>
+                <div class="ms-4">
+                  <div class="row mb-2">
+                    <div class="col">
+                      <label for="street" class="form-label ms-3">Calle</label>
+                      <input type="text" class="form-control" id="street" required>
+                      <div class="invalid-feedback small">
+                        Ingrese una calle.
+                      </div>
+                    </div>
+                    <div class="col">
+                      <label for="num" class="form-label ms-3">Numero</label>
+                      <input type="number" class="form-control" id="num" required>
+                      <div class="invalid-feedback small">
+                        Ingrese un numero.
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row mb-2">
+                    <div class="col">
+                      <label for="esq" class="form-label ms-3">Esquina</label>
+                      <input type="text" class="form-control" id="esq" required>
+                      <div class="invalid-feedback small">
+                        Ingrese una esquina.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <hr>
+            <!--Lista de precios: subtotal, envio y total-->
+            <div class="ms-3">
+              <h5>Costos</h5>
+              <div class="mx-4">
+                <ul class="list-group list-group-flush border">
+                  <li class="list-group-item d-flex justify-content-between align-items-start">
+                    <div class="me-auto">
+                      <div class="fw-bold">Subtotal</div>
+                      <p class="text-muted mb-1">Costo del total de productos</p>
+                    </div>
+                    <p class="float-end minW-maxC">USD <span id="totalProductPrice">0</span></p>
+                  </li>
+                  <li class="list-group-item d-flex justify-content-between align-items-start">
+                    <div class="me-auto">
+                      <div class="fw-bold">Costo de envío</div>
+                      <p class="text-muted mb-1">Según el envío seleccionado</p>
+                    </div>
+                    <p class="float-end minW-maxC">USD <span id="shippingCost"></span></p>
+                  </li>
+                  <li class="list-group-item d-flex justify-content-between align-items-start bg-dark text-white fw-bolder">
+                    <div class="ms-2 me-auto">
+                      <div class="fw-bold">Total</div>
+                    </div>
+                    <p class="float-end minW-maxC">USD <span id="totalPrice"></span></p>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <hr>
+            <!--Boton y modal para el metodo de pago-->
+            <div class="ms-3">
+              <h5>Método de pago</h5>
+              <div class="ms-4">
+                <div  id="payButton" class="d-flex align-items-center me-3">
+                  <div>
+                    <!--Boton-->
+                    <button type="button" class="btn btn-outline-primary btn-sm minW-maxC" data-bs-toggle="modal" data-bs-target="#payMethod">          
+                      Seleccionar método <br> de pago
+                    </button>
+                  </div>
+                  <div>
+                    <!--Metodo seleccionado-->
+                    <p class="m-0 ms-3 text-muted small" id="paySelect"></p>
+                  </div>
+                </div>
+                <div class="invalid-feedback small">
+                  Elija un método de pago y complete los campos correspondientes.
+                </div>
+                <!--Modal-->
+                <div class="modal fade" id="payMethod" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modalTitle" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header bg-light">          
+                        <h1 class="modal-title fs-5" id="modalTitle">Método de pago</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">          
+                        <div class="ms-4">
+                          <!--Tarjeta de credito-->
+                          <div class="my-3">
+                            <div class="form-check">
+                              <input class="form-check-input" type="radio" name="payMeth" id="credit">
+                              <label class="form-check-label mb-2 fw-bold" for="credit">Tarjeta de crédito</label>
+                            </div>
+                            <div class="me-4">
+                              <div class="row mb-2 align-items-center">
+                                <div class="col">
+                                  <label for="cardNum" class="form-label">Número de tarjeta</label>
+                                  <input type="text" class="form-control" id="cardNum" disabled>
+                                </div>
+                              </div>
+                              <div class="row mb-2">
+                                <div class="col">
+                                  <label for="cardCode" class="form-label">Código de seguridad</label>
+                                  <input type="text" class="form-control" id="cardCode" disabled>
+                                </div>
+                                <div class="col">
+                                  <label for="cardDate" class="form-label">Vencimiento <span class="text-muted">(MM/AA)</span></label>
+                                  <input type="text" class="form-control" id="cardDate" disabled>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <!--Transferencia bancaria-->
+                          <div class="my-3">
+                            <div class="form-check">
+                              <input class="form-check-input" type="radio" name="payMeth" id="bank">
+                              <label class="form-check-label mb-2 fw-bold" for="bank">Transferencia bancaria</label>
+                            </div>
+                            <div class="me-4 mb-2">
+                              <label for="bankNum" class="form-label">Número de cuenta</span></label>
+                              <input type="text" class="form-control" id="bankNum" disabled>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="modal-footer bg-light py-1">
+                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Listo!</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="w-75 mx-auto mt-4">
+              <button type="submit" id="finishBuy" class="btn btn-success fs-5 w-100">Finalizar compra</button>
+            </div>
+          </form>
         </div>
-      </form>
+      </div>
+      <div class="alert alert-success alert-dismissible fade show position-fixed top-0 start-50 mt-4 translate-middle-x visually-hidden" role="alert" id="complete">
+        <div class="alert-heading">
+            <h4>Felicitaciones!</h4>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        <p>La compra se ha realizado con éxito.</p>
+      </div>
     </div>
   </main>
   <footer class="text-muted">

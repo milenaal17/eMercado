@@ -131,7 +131,6 @@ document.addEventListener('DOMContentLoaded', function (){
       relatedProductsList();
 
       getCart(productInfo.name);
-      console.log(cartList)
     });
   //Obtencion de los comentarios del producto:
   getJSONData(commentsURL).then(function(dataComments){

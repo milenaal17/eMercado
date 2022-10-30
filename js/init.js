@@ -74,6 +74,7 @@ document.getElementById("userName").addEventListener("click",()=>{
 document.getElementById("signOut").addEventListener("click", () => {
   localStorage.removeItem("user");
   localStorage.removeItem("cartList");
+  localStorage.removeItem("productID");
   window.location.href= "login.html"; //Vuelve al login
 })
 
@@ -84,3 +85,13 @@ function setProductID(id) {
 }
 
 let cartURL =CART_INFO_URL + 25801 + EXT_TYPE;
+
+function isValid(ok,field){
+  if (ok) {
+    document.getElementById(`${field}`).classList.remove('is-invalid');
+    document.getElementById(`${field}`).classList.add('is-valid');
+  } else {
+    document.getElementById(`${field}`).classList.remove('is-valid');
+    document.getElementById(`${field}`).classList.add('is-invalid');
+  };
+}

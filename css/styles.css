@@ -261,6 +261,10 @@ a.custom-card:hover {
   width: max-content;
 }
 
+.minW-maxC{
+  min-width: max-content !important;
+}
+
 @media screen and (max-width: 900px) {
   #backCart{
     content: "";

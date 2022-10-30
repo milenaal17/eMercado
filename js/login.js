@@ -8,15 +8,11 @@ const validPass={
 };
 
 function validField(ok,field){
-  if (ok) {
+  if (ok)
     document.getElementById(`${field}Alert`).classList.add('visually-hidden');
-    document.getElementById(`${field}Input`).classList.remove('is-invalid');
-    document.getElementById(`${field}Input`).classList.add('is-valid');
-  } else {
+  else
     document.getElementById(`${field}Alert`).classList.remove('visually-hidden');
-    document.getElementById(`${field}Input`).classList.remove('is-valid');
-    document.getElementById(`${field}Input`).classList.add('is-invalid');
-  };
+  isValid(ok,`${field}Input`)
 }
 
 // Validación de contraseña, posteriormente se implementará en el registro.
