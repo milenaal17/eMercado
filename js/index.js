@@ -1,24 +1,4 @@
 document.addEventListener("DOMContentLoaded", function(){
-  //Verificación de la existencia de parámetros de formulario en la url: 
-  let user= localStorage.getItem("user");
-  if(user==null)
-    //Si NO está logueado:
-    window.location.href= "login.html";
-  else{
-    //Si está logueado:
-    document.getElementById("profile").classList.remove("invisible");
-    let cartList= localStorage.getItem("cartList");
-    if (cartList==null){
-      getJSONData(cartURL).then(function(cartInfo){
-        if (cartInfo.status === "ok"){
-          let cartListAPI=[];
-          for (const article of cartInfo.data.articles)
-            cartListAPI.push(article);        
-          localStorage.setItem("cartList",JSON.stringify(cartListAPI));
-        }
-      })
-    } 
-  }
 
   document.getElementById("autos").addEventListener("click", function() {
     localStorage.setItem("catID", 101);
@@ -33,8 +13,4 @@ document.addEventListener("DOMContentLoaded", function(){
     window.location = "products.html"
   });
   
-  //"Esconde" el elemento para que no se vea un null por el breve periodo de tiempo que tarda en cambiar al login:
-  document.getElementById("signOut").addEventListener("click", () => {
-    document.getElementById("profile").classList.add("invisible");
-  })
 });

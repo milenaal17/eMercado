@@ -18,39 +18,47 @@
 
 <body>
   <main class="mt-4">
-    <div class="container text-center form-signing w-50">
-      <form id="sing-in">
-        <img class="w-75" src="img/login.png" alt="">
-        <h1 class="h4 mb-3 fw-bold text-decoration-underline">Inicio de sesión</h1>
-
-        <div class="w-50 m-auto">
-          <div>
-            <label class="h6 fw-normal m-0" for="emailInput">Email</label>
-            <input type="email" name="email" class="form-control" id="emailInput" placeholder="Email">
-            <div class="small alert-danger p-1 visually-hidden" id="emailAlert">
-              <small>Debe ser una dirección de correo valida.</small>
+    <div class="container text-center form-signing">
+      <div class="row justify-content-center">
+        <div class="col-sm-12 col-md-9 col-lg-6">
+          <form id="sing-in">
+            <div class="row justify-content-center">
+              <img class="w-75" src="img/login.png" alt="login.png">
+              <h1 class="h4 mb-3 fw-bold text-decoration-underline">Inicio de sesión</h1>
             </div>
-          </div class="mb-2">
-          <div>
-            <label class="h6 fw-normal m-0" for="passwordInput">Contraseña</label>
-            <input type="password" name="password" class="form-control" id="passwordInput" placeholder="Contraseña">
-            <div class="small alert-danger p-1 ps-3 text-start visually-hidden" id="passwordAlert">
-              La contraseña debe tener: 
-              <ul>
-                <li id="0">largo minimo de 8 caracteres</li>
-                <li id="1">al menos una letra mayuscula</li>
-                <li id="2">al menos una letra minuscula</li>
-                <li id="3">al menos un numero</li>
-                <li id="4">al menos un simbolo</li>
-              </ul>
+    
+            <div class="row justify-content-center">
+              <div class="col-9 col-md-6">
+                <div>
+                  <label class="h6 fw-normal m-0" for="emailInput">Email</label>
+                  <input type="email" name="email" class="form-control" id="emailInput" placeholder="Email">
+                  <div class="small alert-danger p-1 visually-hidden" id="emailAlert">
+                    <small>Debe ser una dirección de correo valida.</small>
+                  </div>
+                </div>
+                <div class="mt-2">
+                  <label class="h6 fw-normal m-0" for="passwordInput">Contraseña</label>
+                  <input type="password" name="password" class="form-control" id="passwordInput" placeholder="Contraseña">
+                  <div class="small alert-danger p-1 ps-3 text-start visually-hidden" id="passwordAlert">
+                    La contraseña debe tener: 
+                    <ul>
+                      <li id="0">largo minimo de 8 caracteres</li>
+                      <li id="1">al menos una letra mayuscula</li>
+                      <li id="2">al menos una letra minuscula</li>
+                      <li id="3">al menos un numero</li>
+                      <li id="4">al menos un simbolo</li>
+                    </ul>
+                  </div>
+                </div>
+                <button class="mt-4 btn btn-primary" type="submit">Ingresar</button>
+                <div class="small alert-danger p-1 mt-2 visually-hidden" id="sendData">
+                  <small>Complete todos los campos correctamente.</small>
+                </div>
+              </div>
             </div>
-          </div>
-          <button class="mt-4 btn btn-lg btn-primary" type="submit">Ingresar</button>
-          <div class="small alert-danger p-1 mt-2 visually-hidden" id="sendData">
-            <small>Complete todos los campos correctamente.</small>
-          </div>
+          </form>
         </div>
-      </form>
+      </div>
     </div>
   </main>
   <footer class="text-muted">

@@ -77,6 +77,7 @@ function addCartProduct(product){
       cart.splice(i,1);
       localStorage.setItem("cartList",JSON.stringify(cart));
       changeTotal(-toRest.innerHTML,toRest.classList.value);
+      //Si era el ultimo producto refresca la pagina para reiniciar los costos y la tabla:
       if (cart.length==0)
         window.location.href=window.location.href;
     }
@@ -104,16 +105,23 @@ document.addEventListener("DOMContentLoaded",()=>{
   cart= localStorage.getItem("cartList");
   if (cart!=null) {
     cart= JSON.parse(cart)
+    //Adicion de cada producto en el carrito
     for (const article of cart)
       addCartProduct(article);
+    //Al terminar toma el total de precios de los productos e ingresa los valores de costo de envio y el total final:
     let total=parseInt(document.getElementById('totalProductPrice').innerHTML);
-    document.getElementById('shippingCost').innerHTML=Math.round(total*0.05)
+    document.getElementById('shippingCost').innerHTML=Math.round(total*0.05) //considera que se tiene envio standard por defecto
     document.getElementById('totalPrice').innerHTML=total+Math.round(total*0.05);
+
+    //Si el carrito esta vacio despliega un mensaje en la tabla:
     if (cart.length==0)
       document.getElementById('cartProducts').innerHTML=`
         <td class="text-center text-danger" colspan="6">No hay productos en el carrito</td>
       `;
-  }
+  } else
+    document.getElementById('cartProducts').innerHTML=`
+    <td class="text-center text-danger" colspan="6">No ha iniciado sesion</td>
+    `;
   //Envío standard:
   document.getElementById("standard").addEventListener("click", () => {
     shipping="standard";
@@ -191,7 +199,7 @@ document.addEventListener("DOMContentLoaded",()=>{
 
   //Aporte visual al campo de vencimiento de la tarjeta de credito:
   let dateInput= document.getElementById('cardDate');
-  dateInput.addEventListener("input",()=>{
+  dateInput.addEventListener("keypress",(e)=>{
     if(dateInput.value.length==2)
       dateInput.value+='/'
   })

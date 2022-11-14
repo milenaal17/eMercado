@@ -52,11 +52,82 @@
     </div>
   </nav>
   <main>
-    <div class="container">
-      <div class="alert alert-danger text-center" role="alert">
-        <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
-      </div>
+    <div class="container mt-5">
+      <form action="" id="profileForm" novalidate>
+        <div class="row">
+          <div  class="col-sm-12 col-md-6 col-lg-4 p-md-3 p-sm-5 pb-sm-3 position-relative">
+            <!--Apartado de imagen del perfil-->
+            <div id="addImage" class="position-relative p-0 btn btn-outline-light w-100">
+              <!--Imagen-->
+              <img id="profileImg" src="img/user-add-icon.png" class="img-thumbnail img-fluid" alt="Add Profile Icon">
+              <!--Input oculto para elegir imagen-->
+              <input type="file" accept="image/*" id="imgFile" class="visually-hidden"/>
+              <!--Botón para eliminar imagen-->
+              <button id="deleteImg" type="button" class="btn-close btn-close-white position-absolute top-0 end-0 m-3 visually-hidden" aria-label="Close" title="Eliminar foto"></button>
+            </div>
+          </div>
+          <div class="col p-2 mt-2">
+            <!--Apartado de datos-->
+            <div class="row">
+              <div class="col-sm-12 col-lg-6 my-2 ps-3">
+                <label class="h6 fw-normal" for="firstName">Primer Nombre<span class="text-danger">*</span></label>
+                <input type="text" name="firstName" class="form-control ms-3" id="firstName" placeholder="Primer Nombre" required>
+                <div class="invalid-feedback small ms-3">
+                  Debe ingresar su primer nombre.
+                </div>
+              </div>
+              <div class="col-sm-12 col-lg-6 my-2 ps-3">
+                <label class="h6 fw-normal" for="secondName">Segundo Nombre</label>
+                <input type="text" name="secondName" class="form-control ms-3" id="secondName" placeholder="Segundo Nombre">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-12 col-lg-6 my-2 ps-3">
+                <label class="h6 fw-normal" for="firstSurname">Primer Apellido<span class="text-danger">*</span></label>
+                <input type="text" name="firstSurname" class="form-control ms-3" id="firstSurname" placeholder="Primer Apellido" required>
+                <div class="invalid-feedback small ms-3">
+                  Debe ingresar su primer apellido.
+                </div>
+              </div>
+              <div class="col-sm-12 col-lg-6 my-2 ps-3">
+                <label class="h6 fw-normal" for="secondSurname">Segundo Apellido</label>
+                <input type="text" name="secondSurname" class="form-control ms-3" id="secondSurname" placeholder="Segundo Apellido">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-12 col-lg-6 my-2 ps-3">
+                <label class="h6 fw-normal" for="email">Email<span class="text-danger">*</span></label>
+                <input type="email" name="email" class="form-control ms-3" id="email" placeholder="Email" required>
+                <div class="invalid-feedback small ms-3">
+                  Debe ingresar un email valido.
+                </div>
+              </div>
+              <div class="col-sm-12 col-lg-6 my-2 ps-3">
+                <label class="h6 fw-normal" for="phone">Telefono</label>
+                <input type="text" name="phone" class="form-control ms-3" id="phone" placeholder="Telefono">
+                <div class="invalid-feedback small ms-3">
+                  Debe ingresar un numero de telefono valido.
+                </div>
+              </div>
+            </div>
+            <div class="row mt-3">
+              <div class="col text-end">
+                <button type="submit" id="saveChanges" class="btn btn-primary">Guardar cambios</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
     </div>
+    <!--Alerta de daatos guardados correctamente-->
+    <div class="alert alert-success alert-dismissible fade show position-fixed top-0 start-50 mt-4 translate-middle-x visually-hidden" role="alert" id="complete">
+      <div class="alert-heading">
+          <h4>Datos guardados con éxito!</h4>
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+      <p>Encontrarás estos datos en tu siguiente visita.</p>
+    </div>
+  </div>
   </main>
   <footer class="text-muted">
     <div class="container">

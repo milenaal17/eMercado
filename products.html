@@ -57,23 +57,19 @@
       </div>
       <div class="row">
         <div class="col-md-12 mb-1 container">
-          <div class="row container p-0 m-0">
-            <div class="col-auto d-flex mb-1" role="search"> 
+          <div class="row container p-0 m-0 justify-content-end">
+            <div class="col-auto d-flex mb-1 float-start pe-1" role="search"> 
               <!-- Barra de búsqueda -->
-              <label class="btn disabled" for="searchInput"><i class="fas fa-search mr-1"></i></label>
-              <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search" id="searchInput">
+              <label class="btn disabled" for="searchInput"><i class="fas fa-search me-1"></i></label>
+              <input class="form-control me-0" type="search" placeholder="Buscar" aria-label="Search" id="searchInput">
             </div>
             <!-- Controles de precio -->
-            <div class="col offset-lg-2">
-              <p class="font-weight-normal text-end my-2">Precio:</p>
+            <div class="col d-flex justify-content-end align-items-center pe-1">
+              <p class="font-weight-normal text-end mx-2 my-0">Precio:</p>
+              <input class="form-control p-1 mx-2" type="number" placeholder="min." id="minPrice">
+              <input class="form-control p-1" type="number" placeholder="máx." id="maxPrice">
             </div>
-            <div class="col m-0 p-0">
-              <input class="form-control" type="number" placeholder="min." id="minPrice">
-            </div>
-            <div class="col m-0">
-              <input class="form-control" type="number" placeholder="máx." id="maxPrice">
-            </div>
-            <div class="col-auto p-0">
+            <div class="col-auto p-1">
               
                 <button class="btn btn-dark btn-block" id="filterPrice">Filtrar</button>
                 <button class="btn btn-outline-dark btn-sm" id="clearPrice">Limpiar</button>

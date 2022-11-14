@@ -191,21 +191,21 @@
                               <input class="form-check-input" type="radio" name="payMeth" id="credit">
                               <label class="form-check-label mb-2 fw-bold" for="credit">Tarjeta de crédito</label>
                             </div>
-                            <div class="me-4">
+                            <div class="mx-4">
                               <div class="row mb-2 align-items-center">
                                 <div class="col">
                                   <label for="cardNum" class="form-label">Número de tarjeta</label>
-                                  <input type="text" class="form-control" id="cardNum" disabled>
+                                  <input type="text" class="form-control" id="cardNum" maxlength="16" disabled>
                                 </div>
                               </div>
                               <div class="row mb-2">
                                 <div class="col">
                                   <label for="cardCode" class="form-label">Código de seguridad</label>
-                                  <input type="text" class="form-control" id="cardCode" disabled>
+                                  <input type="text" class="form-control" id="cardCode" maxlength="3" disabled>
                                 </div>
                                 <div class="col">
                                   <label for="cardDate" class="form-label">Vencimiento <span class="text-muted">(MM/AA)</span></label>
-                                  <input type="text" class="form-control" id="cardDate" disabled>
+                                  <input type="text" class="form-control" id="cardDate" maxlength="5" disabled>
                                 </div>
                               </div>
                             </div>
@@ -216,7 +216,7 @@
                               <input class="form-check-input" type="radio" name="payMeth" id="bank">
                               <label class="form-check-label mb-2 fw-bold" for="bank">Transferencia bancaria</label>
                             </div>
-                            <div class="me-4 mb-2">
+                            <div class="mx-4 mb-2">
                               <label for="bankNum" class="form-label">Número de cuenta</span></label>
                               <input type="text" class="form-control" id="bankNum" disabled>
                             </div>

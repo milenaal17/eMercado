@@ -7,6 +7,8 @@ const CART_INFO_URL = "https://japceibal.github.io/emercado-api/user_cart/";
 const CART_BUY_URL = "https://japceibal.github.io/emercado-api/cart/buy.json";
 const EXT_TYPE = ".json";
 
+const validEmail= /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
+
 let showSpinner = function(){
   document.getElementById("spinner-wrapper").style.display = "block";
 }
@@ -39,11 +41,36 @@ let getJSONData = function(url){
         return result;
     });
 }
+let cartURL =CART_INFO_URL + 25801 + EXT_TYPE;
 
-//4to elemento li del nav, correspondiente al espacio del usuario:
-let profileLi= document.getElementsByClassName("nav-item")[3];
-//Muestra en la barra de navegación el email de la cuenta logueada como un menu desplegable:
-profileLi.innerHTML=`
+document.addEventListener("DOMContentLoaded",()=>{
+  //4to elemento li del nav, correspondiente al espacio del usuario:
+  let profileLi= document.getElementsByClassName("nav-item")[3];
+  profileLi.id="profile";
+  profileLi.classList.add("invisible");
+  
+  //Verificación de la existencia de un usuario en el localStorage: 
+  let user= localStorage.getItem("user");
+  if(user==null)
+    //Si NO está logueado:
+    window.location.href= "login.html";
+  else{
+    //Si está logueado:
+    document.getElementById("profile").classList.remove("invisible");
+    let cartList= localStorage.getItem("cartList");
+    if (cartList==null){
+      getJSONData(cartURL).then(function(cartInfo){
+        if (cartInfo.status === "ok"){
+          let cartListAPI=[];
+          for (const article of cartInfo.data.articles)
+            cartListAPI.push(article);        
+          localStorage.setItem("cartList",JSON.stringify(cartListAPI));
+        }
+      })
+    } 
+  }
+  //Muestra en la barra de navegación el email de la cuenta logueada como un menu desplegable:
+  profileLi.innerHTML=`
   <div class="dropdown" id="drop">
     <!-- Se hace uso de "collapse" para la visualizacion y animacion del menu desplegable  -->
     <a class="nav-link active" href=# data-bs-toggle="collapse" data-bs-target="#dropMenu" aria-expanded="false" id="userName">
@@ -64,19 +91,23 @@ profileLi.innerHTML=`
       </ul> 
     </div> 
   </div>
-`;
-//Agrega la clase que rota la flecha en el menu desplegable:
-document.getElementById("userName").addEventListener("click",()=>{
-  document.getElementById("dropArrow").classList.toggle("dropRotate");
+  `;  
+  //Agrega la clase que rota la flecha en el menu desplegable:
+  document.getElementById("userName").addEventListener("click",()=>{
+    document.getElementById("dropArrow").classList.toggle("dropRotate");
+  })
+  
+  //Al hacer click en el botón para salir de la cuenta:
+  document.getElementById("signOut").addEventListener("click", () => {
+    document.getElementById("profile").classList.add("invisible");
+    localStorage.removeItem("user");
+    localStorage.removeItem("cartList");
+    localStorage.removeItem("productID");
+    window.location.href= "login.html"; //Vuelve al login
+  })
+
 })
 
-//Al hacer click en el botón para salir de la cuenta:
-document.getElementById("signOut").addEventListener("click", () => {
-  localStorage.removeItem("user");
-  localStorage.removeItem("cartList");
-  localStorage.removeItem("productID");
-  window.location.href= "login.html"; //Vuelve al login
-})
 
 //Guarda en LocalStorage la id de un producto pasada por parametro y redirige a product-info.html:
 function setProductID(id) {
@@ -84,8 +115,7 @@ function setProductID(id) {
   window.location = "product-info.html"
 }
 
-let cartURL =CART_INFO_URL + 25801 + EXT_TYPE;
-
+//Hace verificación de una expresión booleana aplicada al valor de un input, agregando clases para el feedback con el usuario:
 function isValid(ok,field){
   if (ok) {
     document.getElementById(`${field}`).classList.remove('is-invalid');
@@ -95,3 +125,4 @@ function isValid(ok,field){
     document.getElementById(`${field}`).classList.add('is-invalid');
   };
 }
+
